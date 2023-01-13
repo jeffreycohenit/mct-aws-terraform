@@ -41,22 +41,23 @@ module "loadbalancing" {
   lb_unhealthy_threshold = 2
   lb_timeout             = 3
   lb_interval            = 30
-  listener_port          = 8000
+  listener_port          = 80
   listener_protocol      = "HTTP"
 }
 
 module "compute" {
-  source          = "./compute"
-  public_sg       = module.networking.public_sg
-  public_subnets  = module.networking.public_subnets
-  instance_count  = 2
-  instance_type   = "t3.micro"
-  vol_size        = "20"
-  key_name        = "mtckey"
-  public_key_path = "/home/ubuntu/.ssh/keymtc.pub"
-  user_data_path  = "${path.root}/userdata.tpl"
-  db_name         = var.db_name
-  dbuser          = var.dbuser
-  dbpassword      = var.dbpassword
-  db_endpoint     = module.database.db_endpoint
+  source              = "./compute"
+  public_sg           = module.networking.public_sg
+  public_subnets      = module.networking.public_subnets
+  instance_count      = 2
+  instance_type       = "t3.micro"
+  vol_size            = "20"
+  key_name            = "mtckey"
+  public_key_path     = "/home/ubuntu/.ssh/keymtc.pub"
+  user_data_path      = "${path.root}/userdata.tpl"
+  db_name             = var.db_name
+  dbuser              = var.dbuser
+  dbpassword          = var.dbpassword
+  db_endpoint         = module.database.db_endpoint
+  lb_target_group_arn = module.loadbalancing.lb_target_group_arn
 }
