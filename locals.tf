@@ -1,4 +1,4 @@
-# --- root/locals.tf ---
+# --- root/locals.tf --- #
 
 locals {
   vpc_cidr = "10.123.0.0/16"
@@ -11,9 +11,9 @@ locals {
       description = "public access"
       ingress = {
         ssh = {
-          from        = 22
-          to          = 22
-          protocol    = "tcp"
+          from        = 0
+          to          = 0
+          protocol    = -1
           cidr_blocks = [var.access_ip]
         }
         http = {

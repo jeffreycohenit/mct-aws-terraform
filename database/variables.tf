@@ -1,4 +1,4 @@
-# ---- database/variables.tf -----
+# --- database/variables.tf --- #
 
 variable "db_storage" {}
 variable "db_instance_class" {}

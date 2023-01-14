@@ -1,4 +1,4 @@
-# --- root/main.tf ---
+# --- root/main.tf --- #
 
 #Deploy Networking Resources
 
@@ -49,7 +49,7 @@ module "compute" {
   source              = "./compute"
   public_sg           = module.networking.public_sg
   public_subnets      = module.networking.public_subnets
-  instance_count      = 2
+  instance_count      = 1
   instance_type       = "t3.micro"
   vol_size            = "20"
   key_name            = "mtckey"
@@ -61,4 +61,5 @@ module "compute" {
   db_endpoint         = module.database.db_endpoint
   lb_target_group_arn = module.loadbalancing.lb_target_group_arn
   tg_port             = 8000
+  private_key_path    = "home/ubuntu/.ssh/keymtc"
 }

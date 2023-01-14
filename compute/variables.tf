@@ -1,4 +1,4 @@
-# --- compute/variables.tf ---
+# --- compute/variables.tf --- #
 
 variable "instance_count" {}
 variable "instance_type" {}
@@ -14,3 +14,4 @@ variable "dbpassword" {}
 variable "db_endpoint" {}
 variable "lb_target_group_arn" {}
 variable "tg_port" {}
+variable "private_key_path" {}
